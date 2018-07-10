@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handler_int.c                                   :+:      :+:    :+:   */
+/*   ft_intmax.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/09 09:38:12 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/10 22:09:54 by wbraeckm         ###   ########.fr       */
+/*   Created: 2018/07/10 22:15:25 by wbraeckm          #+#    #+#             */
+/*   Updated: 2018/07/10 22:22:59 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+#include <stdarg.h>
 
-void	ft_miniputnbr(int n, int *printed)
+int		ft_intmax(int len, ...)
 {
-	if (n < 0)
-		n = -n;
-	if (n > 9)
-		ft_miniputnbr(n / 10, printed);
-	ft_printf_putchar(n % 10 + '0', printed);
-}
+	int		max;
+	va_list	list;
 
-void	ft_printf_handle_int(va_list list, int *printed, t_flags flags)
-{
-	int		n;
-
-	n = va_arg(list, int);
-	ft_miniputnbr(n, printed);
+	if (len == 0)
+		return (0);
+	va_start(list, len);
+	max = va_arg(list, int);
+	while (len-- - 1)
+		max = ft_max(max, va_arg(list, int));
+	va_end(list);
+	return (max);
 }

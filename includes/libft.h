@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 08:10:53 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/09 16:46:42 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/10 22:26:00 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ size_t				ft_strfind(const char *str, char c);
 char				*ft_strtoupper(char *str);
 char				*ft_strtolower(char *str);
 int					ft_strstartswith(const char *str, const char *find);
+char				*ft_strshift(char *str, int shift);
 
 void				ft_putchar_fd(int c, int fd);
 void				ft_putchar(int c);
@@ -115,6 +116,10 @@ char				ft_itoc(int value);
 size_t				ft_intlen_base(int value, size_t basesize);
 size_t				ft_intlen(int value);
 int					*ft_range(int min, int max);
+int					ft_intmin(int len, ...);
+int					ft_intmax(int len, ...);
+int					ft_min(int i, int j);
+int					ft_max(int i, int j);
 
 int					ft_isalpha(int c);
 int					ft_islower(int c);

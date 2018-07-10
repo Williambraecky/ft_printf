@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 08:20:46 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/06/25 18:54:57 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/10 22:34:13 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	ft_strlen(const char *str)
 {
-	size_t i;
+	char	*tmp;;
 
-	i = 0;
-	while (*str++)
-		i++;
-	return (i);
+	tmp = (char *)str;
+	while (*tmp)
+		tmp++;
+	return (tmp - str);
 }
