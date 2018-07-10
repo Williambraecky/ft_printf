@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 16:40:40 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/10 18:14:56 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/10 19:06:32 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define ARGED_WIDTH (1 << 7)
 # define ARGED_PRECISION (1 << 8)
 
-# define UNDEFINED_WIDTH (1 << 6)
+# define UNDEFINED_WIDTH 0
 
 typedef struct	s_flags
 {
