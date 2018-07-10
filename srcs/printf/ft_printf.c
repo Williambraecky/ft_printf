@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 16:37:01 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/10 17:02:42 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/10 18:25:20 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	ft_handle_flag(char **str, va_list list, t_flags t_flag, int *printed)
 			t_flag.precision = t_flag.precision * 10 + (*(*str)++ - '0');
 	ft_handle(str, list, t_flag, printed);
 }
+
+/*
+** TODO: handle $ flag for arg positioning
+*/
 
 void	ft_parse_flags(char **str, va_list list, int *printed)
 {
