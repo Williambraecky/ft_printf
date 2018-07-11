@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 08:10:53 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/10 22:26:00 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/10 22:56:04 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ int					ft_intmin(int len, ...);
 int					ft_intmax(int len, ...);
 int					ft_min(int i, int j);
 int					ft_max(int i, int j);
+int					ft_abs(int i);
 
 int					ft_isalpha(int c);
 int					ft_islower(int c);

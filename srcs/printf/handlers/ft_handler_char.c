@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 09:43:40 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/09 09:45:54 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/11 13:53:47 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@ void	ft_printf_handle_char(va_list list, int *printed, t_flags flags)
 	int c;
 
 	c = va_arg(list, int);
-	ft_printf_putchar(c, printed);
+	ft_printf_handle_none(c, flags, printed);
 }
