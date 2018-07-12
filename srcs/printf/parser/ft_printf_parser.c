@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:16:33 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/11 16:50:02 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/12 14:44:44 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,40 @@ t_flags	ft_new_flags(void)
 	return (t_flag);
 }
 
+void	ft_handle_paramed_width(char **str, va_list list, t_flags *flags)
+{
+	int		i;
+
+	i = 0;
+	while (ft_isdigit(**str))
+		i = i * 10 + (*(*str)++ - '0');
+	if (**str == '*')
+		i = va_arg(list, int);
+	flags->width = i;
+	if (**str == '*' && (*str)++)
+	{
+		ft_handle_paramed_width(str, list, flags);
+		return ;
+	}
+	if (**str == '.' && (*str)++ && !(i = 0))
+	{
+		while (ft_isdigit(**str))
+			i = i * 10 + (*(*str)++ - '0');
+		if (**str == '*')
+			i = va_arg(list, int);
+		flags->precision = i;
+		if (**str == '*' && (*str)++)
+			ft_handle_paramed_width(str, list, flags);
+	}
+}
+
 /*
 ** TODO: handle * for width and precision
 */
 
 void	ft_handle_flag(char **str, va_list list, t_flags t_flag, int *printed)
 {
-	while (ft_isdigit(**str))
-		t_flag.width = t_flag.width * 10 + (*(*str)++ - '0');
-	if (**str == '.' && (*str)++)
-		while (ft_isdigit(**str))
-			t_flag.precision = t_flag.precision * 10 + (*(*str)++ - '0');
+	ft_handle_paramed_width(str, list, &t_flag);
 	while (**str && ft_strchr("lhjz", **str) != NULL)
 	{
 		if (**str == 'l')
