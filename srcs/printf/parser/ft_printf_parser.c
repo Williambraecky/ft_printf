@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:16:33 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/12 14:44:44 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/12 15:53:06 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,6 @@ void	ft_handle_paramed_width(char **str, va_list list, t_flags *flags)
 			ft_handle_paramed_width(str, list, flags);
 	}
 }
-
-/*
-** TODO: handle * for width and precision
-*/
 
 void	ft_handle_flag(char **str, va_list list, t_flags t_flag, int *printed)
 {
