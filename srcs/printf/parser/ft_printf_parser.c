@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:16:33 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/12 15:53:06 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/13 13:21:34 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_handle_paramed_width(char **str, va_list list, t_flags *flags)
 		ft_handle_paramed_width(str, list, flags);
 		return ;
 	}
-	if (**str == '.' && (*str)++ && !(i = 0))
+	while (**str == '.' && (*str)++ && !(i = 0))
 	{
 		while (ft_isdigit(**str))
 			i = i * 10 + (*(*str)++ - '0');
