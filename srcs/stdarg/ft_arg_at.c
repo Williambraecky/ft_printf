@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_arg_at.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/05 16:37:01 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/15 15:37:56 by wbraeckm         ###   ########.fr       */
+/*   Created: 2018/07/15 15:31:39 by wbraeckm          #+#    #+#             */
+/*   Updated: 2018/07/15 15:33:10 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+#include <stdarg.h>
 
-int		ft_printf(const char *format, ...)
+void	*ft_arg_at(va_list list, size_t pos)
 {
-	va_list		list[2];
-	char		*str;
-	int			printed;
+	void	*p;
 
-	if (format == NULL)
-		return (-1);
-	str = (char *)format;
-	printed = 0;
-	va_start(list[0], format);
-	va_copy(list[1], list[0]);
-	ft_parse_printf(str, list, &printed);
-	va_end(list[0]);
-	va_end(list[1]);
-	return (printed);
+	if (pos == 0)
+		return (NULL);
+	while (pos--)
+		p = va_arg(list, void *);
+	return (p);
 }

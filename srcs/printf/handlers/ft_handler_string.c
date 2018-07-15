@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 09:41:52 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/15 15:28:55 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/15 15:40:36 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,15 @@ void	ft_printf_handle_string_intern(char *str, int *printed, t_flags flags)
 
 void	ft_printf_handle_string(va_list *list, int *printed, t_flags flags)
 {
+	va_list	copy;
+
+	if (flags.arg_pos != 0)
+	{
+		va_copy(copy, list[1]);
+		ft_printf_handle_string_intern((char *)ft_arg_at(copy, flags.arg_pos),
+				printed, flags);
+		va_end(copy);
+		return ;
+	}
 	ft_printf_handle_string_intern(va_arg(*list, char *), printed, flags);
 }

@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 17:03:07 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/15 15:30:23 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/15 15:43:45 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	*ft_get_at_index(int index, ...)
 
 int main(int argc, const char *argv[])
 {
-	int i = printf("%30*100.....3p\n", 5, 'a');
-	int j = ft_printf("%30*100.....3p\n", 5, 'a');
+	int i = printf("%1$s %1$s %1$s %1$s %1$s %1$s %1$s %1$s %1$s %1$s \n", "Test");
+	int j = ft_printf("%1$s %1$s %1$s %1$s %1$s %1$s %1$s %1$s %1$s %1$s \n", "Test");
 	if (i != j)
 		printf("Saucisse");
 	return (0);

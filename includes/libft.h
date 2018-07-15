@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 08:10:53 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/10 22:56:04 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/15 15:33:53 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <string.h>
+# include <stdarg.h>
 
 # define LIB_CHAR_BIT 8
 # define LIB_SCHAR_MIN -128
@@ -38,6 +39,8 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+void				*ft_arg_at(va_list list, size_t len);
 
 t_list				*ft_lstnew(const void *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
