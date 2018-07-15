@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_uintlen_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/12 14:36:44 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/13 13:39:54 by wbraeckm         ###   ########.fr       */
+/*   Created: 2018/07/13 13:43:09 by wbraeckm          #+#    #+#             */
+/*   Updated: 2018/07/13 13:44:01 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(ssize_t n)
+size_t		ft_uintlen_base(size_t value, size_t basesize)
 {
-	return (ft_itoa_base(n, (size_t)10));
+	size_t len;
+
+	len = 1;
+	while (value > (basesize - 1) && len++)
+		value /= basesize;
+	return (len);
 }

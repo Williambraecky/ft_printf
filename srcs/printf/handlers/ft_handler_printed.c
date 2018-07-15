@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handler_int.c                                   :+:      :+:    :+:   */
+/*   ft_handler_printed.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/09 09:38:12 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/15 16:43:28 by wbraeckm         ###   ########.fr       */
+/*   Created: 2018/07/15 16:43:06 by wbraeckm          #+#    #+#             */
+/*   Updated: 2018/07/15 16:49:15 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printf_handle_int(va_list *list, int *printed, t_flags flags)
+void	ft_printf_handle_printed(va_list *list, int *printed, t_flags flags)
 {
-	ssize_t	n;
-	char	*itoa;
+	size_t	*n;
 
-	n = (ssize_t)ft_arg_for(list, flags);
+	n = (size_t *)ft_arg_for(list, flags);
 	if (flags._long >= 2)
-		n = n;
+		*n = (size_t)*printed;
 	else if (flags._long == 1)
-		n = (ssize_t)((long int)n);
+		*n = (size_t)((long int)*printed);
 	else if (flags._short >= 2)
-		n = (ssize_t)((char)n);
+		*n = (size_t)((char)*printed);
 	else if (flags._short == 1)
-		n = (ssize_t)((short int)n);
+		*n = (size_t)((short int)*printed);
 	else
-		n = (ssize_t)(int)n;
-	itoa = ft_itoa(n);
-	ft_printf_handle_string_intern(itoa, printed, flags);
-	free(itoa);
+		*n = (size_t)*printed;
 }

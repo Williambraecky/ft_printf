@@ -6,15 +6,15 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:10:55 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/06/21 18:54:10 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/13 13:58:35 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	ft_itoc_base(int value, size_t basesize)
+char	ft_itoc_base(ssize_t value, size_t basesize)
 {
-	value %= (int)basesize;
+	value %= (ssize_t)basesize;
 	if (value < 0)
 		value = -value;
 	if (value < 10)

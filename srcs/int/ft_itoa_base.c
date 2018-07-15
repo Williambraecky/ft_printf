@@ -6,13 +6,13 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 14:26:53 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/06/21 19:09:49 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/13 13:40:28 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa_base(int value, size_t basesize)
+char	*ft_itoa_base(ssize_t value, size_t basesize)
 {
 	char	*result;
 	size_t	negative;

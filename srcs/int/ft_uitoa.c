@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_uitoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/12 14:36:44 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/13 13:39:54 by wbraeckm         ###   ########.fr       */
+/*   Created: 2018/07/13 13:52:26 by wbraeckm          #+#    #+#             */
+/*   Updated: 2018/07/13 13:54:12 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(ssize_t n)
+char	*ft_uitoa(size_t value)
 {
-	return (ft_itoa_base(n, (size_t)10));
+	return (ft_uitoa_base(value, 10));
 }

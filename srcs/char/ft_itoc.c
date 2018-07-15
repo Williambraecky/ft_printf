@@ -6,13 +6,13 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:12:08 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/06/14 09:12:34 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/13 13:58:16 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	ft_itoc(int value)
+char	ft_itoc(ssize_t value)
 {
 	return (ft_itoc_base(value, 10));
 }
