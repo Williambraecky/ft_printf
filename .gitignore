@@ -1,3 +1,7 @@
 obj/
 a.out
+<<<<<<< HEAD
 *.a
+=======
+libftprintf.a
+>>>>>>> 3d68d70cf8a3c13b1a1d6063f2ca6b691aae8895
