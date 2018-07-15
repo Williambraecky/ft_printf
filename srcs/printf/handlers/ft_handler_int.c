@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 09:38:12 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/10 23:01:42 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/15 15:29:24 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	ft_miniputnbr(int n, int *printed)
 	ft_printf_putchar(ft_abs(n % 10) + '0', printed);
 }
 
-void	ft_printf_handle_int(va_list list, int *printed, t_flags flags)
+void	ft_printf_handle_int(va_list *list, int *printed, t_flags flags)
 {
 	int		n;
 
-	n = va_arg(list, int);
+	n = va_arg(*list, int);
 	ft_miniputnbr(n, printed);
 }

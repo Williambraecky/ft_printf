@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:16:33 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/13 13:21:34 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/15 15:28:38 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_flags	ft_new_flags(void)
 	return (t_flag);
 }
 
-void	ft_handle_paramed_width(char **str, va_list list, t_flags *flags)
+void	ft_handle_paramed_width(char **str, va_list *list, t_flags *flags)
 {
 	int		i;
 
@@ -33,7 +33,7 @@ void	ft_handle_paramed_width(char **str, va_list list, t_flags *flags)
 	while (ft_isdigit(**str))
 		i = i * 10 + (*(*str)++ - '0');
 	if (**str == '*')
-		i = va_arg(list, int);
+		i = va_arg(list[0], int);
 	flags->width = i;
 	if (**str == '*' && (*str)++)
 	{
@@ -45,14 +45,14 @@ void	ft_handle_paramed_width(char **str, va_list list, t_flags *flags)
 		while (ft_isdigit(**str))
 			i = i * 10 + (*(*str)++ - '0');
 		if (**str == '*')
-			i = va_arg(list, int);
+			i = va_arg(list[0], int);
 		flags->precision = i;
 		if (**str == '*' && (*str)++)
 			ft_handle_paramed_width(str, list, flags);
 	}
 }
 
-void	ft_handle_flag(char **str, va_list list, t_flags t_flag, int *printed)
+void	ft_handle_flag(char **str, va_list *list, t_flags t_flag, int *printed)
 {
 	ft_handle_paramed_width(str, list, &t_flag);
 	while (**str && ft_strchr("lhjz", **str) != NULL)
@@ -87,7 +87,7 @@ void	ft_handle_positional_arg(char **str, t_flags *flags)
 	flags->arg_pos = arg_pos;
 }
 
-void	ft_parse_flags(char **str, va_list list, int *printed)
+void	ft_parse_flags(char **str, va_list *list, int *printed)
 {
 	t_flags	t_flag;
 
@@ -113,7 +113,7 @@ void	ft_parse_flags(char **str, va_list list, int *printed)
 	ft_handle_flag(str, list, t_flag, printed);
 }
 
-void	ft_parse_printf(char *str, va_list list, int *printed)
+void	ft_parse_printf(char *str, va_list *list, int *printed)
 {
 	char	*tmp;
 	char	*tmp2;

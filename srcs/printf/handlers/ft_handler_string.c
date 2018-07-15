@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 09:41:52 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/11 16:21:06 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/15 15:28:55 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_printf_handle_string_intern(char *str, int *printed, t_flags flags)
 		ft_printf_putnchar(' ', printed, (size_t)flags.width);
 }
 
-void	ft_printf_handle_string(va_list list, int *printed, t_flags flags)
+void	ft_printf_handle_string(va_list *list, int *printed, t_flags flags)
 {
-	ft_printf_handle_string_intern(va_arg(list, char *), printed, flags);
+	ft_printf_handle_string_intern(va_arg(*list, char *), printed, flags);
 }

@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 16:40:40 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/11 16:21:55 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/15 15:27:12 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,41 +29,43 @@
 
 # define UNDEFINED_WIDTH 0
 
-typedef struct	s_flags
+typedef struct s_flags	t_flags;
+struct		s_flags
 {
-	short int	flags;
-	int			width;
-	int			precision;
-	int			_long;
-	int			_short;
-	int			arg_pos;
-}				t_flags;
+	short	flags;
+	int		width;
+	int		precision;
+	int		_long;
+	int		_short;
+	int		arg_pos;
+};
 
-typedef struct	s_handler
+typedef struct s_handler	t_handler;
+struct		s_handler
 {
-	char		c;
-	void		(*handler)(va_list, int *, t_flags);
-}				t_handler;
+	char	c;
+	void	(*handler)(va_list *, int *, t_flags);
+};
 
-int				ft_printf(const char *str, ...);
-void			ft_parse_printf(char *str, va_list list, int *printed);
-void			ft_handle_colors(char **str, int *printed);
+int			ft_printf(const char *str, ...);
+void		ft_parse_printf(char *str, va_list *list, int *printed);
+void		ft_handle_colors(char **str, int *printed);
 
-void			ft_printf_putchar(int c, int *printed);
-void			ft_printf_putnchar(int c, int *printed, size_t amount);
-void			ft_printf_putnstr(const char *str, size_t len, int *printed);
-void			ft_printf_putstr(const char *str, int *printed);
+void		ft_printf_putchar(int c, int *printed);
+void		ft_printf_putnchar(int c, int *printed, size_t amount);
+void		ft_printf_putnstr(const char *str, size_t len, int *printed);
+void		ft_printf_putstr(const char *str, int *printed);
 
-void			ft_handle(char **str, va_list list, t_flags flags,
+void		ft_handle(char **str, va_list *list, t_flags flags,
 		int *printed);
-void			ft_printf_handle_string_intern(char *str, int *printed,
+void		ft_printf_handle_string_intern(char *str, int *printed,
 		t_flags flags);
-void			ft_printf_handle_int(va_list list, int *printed, t_flags flags);
-void			ft_printf_handle_string(va_list list, int *printed,
+void		ft_printf_handle_int(va_list *list, int *printed, t_flags flags);
+void		ft_printf_handle_string(va_list *list, int *printed,
 		t_flags flags);
-void			ft_printf_handle_char(va_list list, int *printed,
+void		ft_printf_handle_char(va_list *list, int *printed,
 		t_flags flags);
-void			ft_printf_handle_none(char c, t_flags flags, int *printed);
-void			ft_printf_handle_pointer(va_list list, int *printed,
+void		ft_printf_handle_none(char c, t_flags flags, int *printed);
+void		ft_printf_handle_pointer(va_list *list, int *printed,
 		t_flags flags);
 #endif

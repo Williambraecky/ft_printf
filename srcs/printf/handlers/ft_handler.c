@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 16:32:37 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/11 17:20:41 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/15 15:27:21 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_handler	g_handlers[] =
 	{'\0', NULL}
 };
 
-void	ft_handle(char **str, va_list list, t_flags flags, int *printed)
+void	ft_handle(char **str, va_list *list, t_flags flags, int *printed)
 {
 	size_t	i;
 

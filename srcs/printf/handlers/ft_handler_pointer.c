@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 14:27:02 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/11 16:40:20 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/15 15:29:06 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ static char		*ft_addrtostring(size_t address, t_flags flags)
 	return (str);
 }
 
-void			ft_printf_handle_pointer(va_list list, int *printed, t_flags flags)
+void			ft_printf_handle_pointer(va_list *list, int *printed, t_flags flags)
 {
 	char	*str;
 
-	str = ft_addrtostring((size_t)va_arg(list, void *), flags);
+	str = ft_addrtostring((size_t)va_arg(*list, void *), flags);
 	ft_printf_handle_string_intern(str, printed, flags);
 	free(str);
 }
