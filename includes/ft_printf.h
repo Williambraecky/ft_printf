@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 16:40:40 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/15 15:27:12 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/15 16:00:50 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void		ft_printf_putstr(const char *str, int *printed);
 
 void		ft_handle(char **str, va_list *list, t_flags flags,
 		int *printed);
+void		*ft_arg_for(va_list *list, t_flags flags);
 void		ft_printf_handle_string_intern(char *str, int *printed,
 		t_flags flags);
 void		ft_printf_handle_int(va_list *list, int *printed, t_flags flags);
