@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 09:41:52 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/16 14:42:22 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/16 15:28:20 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_printf_handle_string(va_list *list, int *printed, t_flags flags)
 	str = ft_arg_for(list, flags);
 	if (str == NULL)
 		str = "(null)";
-	if (flags.precision != 0 && ft_strlen(str) > flags.precision)
+	if (flags.precision != 0 && (int)ft_strlen(str) > flags.precision)
 	{
 		str = ft_strdup(str);
 		str[flags.precision] = '\0';

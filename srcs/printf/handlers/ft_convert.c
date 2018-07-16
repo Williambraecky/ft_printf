@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 17:53:14 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/16 14:49:09 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/16 15:27:50 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_printf_uitoa(size_t value, size_t base, t_flags flags)
 	return (str);
 }
 
-size_t	ft_calclen(ssize_t value, size_t base, t_flags flags, int hassign)
+size_t	ft_calclen(ssize_t value, size_t base, t_flags flags, size_t hassign)
 {
 	size_t	len;
 
@@ -60,8 +60,8 @@ size_t	ft_calclen(ssize_t value, size_t base, t_flags flags, int hassign)
 char	*ft_printf_itoa(ssize_t value, size_t base, t_flags flags)
 {
 	char	*str;
-	int		hassign;
-	int		neg;
+	size_t	hassign;
+	size_t	neg;
 	size_t	len;
 
 	neg = value < 0;
@@ -72,7 +72,7 @@ char	*ft_printf_itoa(ssize_t value, size_t base, t_flags flags)
 	while (len-- > hassign)
 	{
 		str[len] = ft_itoc_base(ft_abs(value % (ssize_t)base), base);
-		value /= base;
+		value /= (ssize_t)base;
 	}
 	if (hassign)
 	{

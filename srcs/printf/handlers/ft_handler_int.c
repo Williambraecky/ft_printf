@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 09:38:12 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/16 14:31:36 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/16 15:10:33 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	ft_printf_handle_int(va_list *list, int *printed, t_flags flags)
 	char	*itoa;
 
 	n = (ssize_t)ft_arg_for(list, flags);
-	if (flags._long >= 2)
-		n = n;
+	if (flags._long >= 2 || flags.flags & LENGTH_J || flags.flags & LENGTH_Z)
+		n = (ssize_t)n;
 	else if (flags._long == 1)
 		n = (ssize_t)((long int)n);
 	else if (flags._short >= 2)
