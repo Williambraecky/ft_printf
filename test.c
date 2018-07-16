@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 17:03:07 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/15 22:48:56 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/16 14:46:14 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,8 @@ void	*ft_get_at_index(int index, ...)
 
 int main(int argc, const char *argv[])
 {
-	int k;
-	int l;
-	int i = printf("%#x %n %#X\n", 10, &k, 10);
-	int j = ft_printf("%#x %n %#X\n", 10, &l, 10);
-	printf("%d %d", k, l);
+	int i = printf("r%#x %#o\n", 0, 0);
+	int j = ft_printf("f%c %#o\n", ft_itoc_base(-4, 10), 0);
 	if (i != j)
 		printf("Saucisse");
 	return (0);
