@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handler_octal.c                                 :+:      :+:    :+:   */
+/*   ft_handler_unsigned.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/15 17:37:08 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/16 13:20:24 by wbraeckm         ###   ########.fr       */
+/*   Created: 2018/07/16 09:52:48 by wbraeckm          #+#    #+#             */
+/*   Updated: 2018/07/16 13:21:43 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printf_handle_octallong(va_list *list, int *printed, t_flags flags)
+void	ft_printf_handle_unsignedlong(va_list *list, int *printed,
+		t_flags flags)
 {
 	flags._long++;
-	ft_printf_handle_octal(list, printed, flags);
+	ft_printf_handle_unsigned(list, printed, flags);
 }
 
-void	ft_printf_handle_octal(va_list *list, int *printed, t_flags flags)
+void	ft_printf_handle_unsigned(va_list *list, int *printed, t_flags flags)
 {
 	size_t	n;
 	char	*itoa;
@@ -34,7 +35,7 @@ void	ft_printf_handle_octal(va_list *list, int *printed, t_flags flags)
 		n = (size_t)((unsigned short int)n);
 	else
 		n = (size_t)(unsigned int)n;
-	itoa = ft_printf_uitoa(n, 8, flags);
+	itoa = ft_printf_uitoa(n, 10, flags);
 	ft_printf_handle_string_intern(itoa, printed, flags);
 	free(itoa);
 }

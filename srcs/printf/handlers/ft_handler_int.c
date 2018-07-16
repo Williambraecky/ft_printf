@@ -6,11 +6,17 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 09:38:12 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/15 18:10:11 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/16 13:18:09 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	ft_printf_handle_intlong(va_list *list, int *printed, t_flags flags)
+{
+	flags._long++;
+	ft_printf_handle_int(list, printed, flags);
+}
 
 void	ft_printf_handle_int(va_list *list, int *printed, t_flags flags)
 {
