@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 16:40:40 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/16 13:50:34 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/17 18:12:52 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define ARGED_PRECISION (1 << 6)
 # define LENGTH_Z (1 << 7)
 # define LENGTH_J (1 << 8)
+# define POINTER (1 << 9)
+# define PRECISION (1 << 10)
 
 # define UNDEFINED_WIDTH 0
 

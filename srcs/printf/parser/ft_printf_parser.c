@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:16:33 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/15 15:28:38 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/17 18:36:33 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_flags	ft_new_flags(void)
 
 	t_flag.flags = 0;
 	t_flag.width = UNDEFINED_WIDTH;
-	t_flag.precision = UNDEFINED_WIDTH;
+	t_flag.precision = 0;
 	t_flag._long = 0;
 	t_flag._short = 0;
 	t_flag.arg_pos = 0;
@@ -34,7 +34,7 @@ void	ft_handle_paramed_width(char **str, va_list *list, t_flags *flags)
 		i = i * 10 + (*(*str)++ - '0');
 	if (**str == '*')
 		i = va_arg(list[0], int);
-	flags->width = i;
+	flags->width = i != 0 ? i : flags->width;
 	if (**str == '*' && (*str)++)
 	{
 		ft_handle_paramed_width(str, list, flags);
@@ -46,6 +46,7 @@ void	ft_handle_paramed_width(char **str, va_list *list, t_flags *flags)
 			i = i * 10 + (*(*str)++ - '0');
 		if (**str == '*')
 			i = va_arg(list[0], int);
+		flags->flags |= PRECISION;
 		flags->precision = i;
 		if (**str == '*' && (*str)++)
 			ft_handle_paramed_width(str, list, flags);
@@ -55,6 +56,11 @@ void	ft_handle_paramed_width(char **str, va_list *list, t_flags *flags)
 void	ft_handle_flag(char **str, va_list *list, t_flags t_flag, int *printed)
 {
 	ft_handle_paramed_width(str, list, &t_flag);
+	if (t_flag.width < 0)
+	{
+		t_flag.width = ft_abs(t_flag.width);
+		t_flag.flags |= MINUS;
+	}
 	while (**str && ft_strchr("lhjz", **str) != NULL)
 	{
 		if (**str == 'l')

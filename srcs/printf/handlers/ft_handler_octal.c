@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 17:37:08 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/16 15:11:09 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/17 18:46:53 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	ft_printf_handle_octal(va_list *list, int *printed, t_flags flags)
 		n = (size_t)((unsigned short int)n);
 	else
 		n = (size_t)(unsigned int)n;
+	if (flags.flags & HASHTAG && flags.precision > 0)
+		flags.precision--;
 	itoa = ft_printf_uitoa(n, 8, flags);
 	ft_printf_handle_string_intern(itoa, printed, flags);
 	free(itoa);

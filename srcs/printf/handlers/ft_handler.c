@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 16:32:37 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/16 13:51:19 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/17 17:06:43 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ void	ft_handle(char **str, va_list *list, t_flags flags, int *printed)
 		}
 		i++;
 	}
-	ft_printf_handle_none(*(*str)++, flags, printed);
+	if (**str)
+		ft_printf_handle_none(*(*str)++, flags, printed);
 }
