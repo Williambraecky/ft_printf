@@ -6,11 +6,24 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 16:37:01 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/15 15:37:56 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/18 17:04:51 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+t_flags	ft_new_flags(void)
+{
+	t_flags t_flag;
+
+	t_flag.flags = 0;
+	t_flag.width = UNDEFINED_WIDTH;
+	t_flag.precision = 0;
+	t_flag.longnb = 0;
+	t_flag.shortnb = 0;
+	t_flag.arg_pos = 0;
+	return (t_flag);
+}
 
 int		ft_printf(const char *format, ...)
 {

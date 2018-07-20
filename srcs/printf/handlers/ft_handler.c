@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 16:32:37 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/17 17:06:43 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/20 14:16:27 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_handler	g_handlers[] =
 	{'D', &ft_printf_handle_intlong},
 	{'i', &ft_printf_handle_int},
 	{'s', &ft_printf_handle_string},
+	{'S', &ft_printf_handle_stringlong},
 	{'p', &ft_printf_handle_pointer},
 	{'n', &ft_printf_handle_printed},
 	{'o', &ft_printf_handle_octal},

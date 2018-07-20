@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 16:40:40 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/17 18:12:52 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/20 15:04:53 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <stdlib.h>
 # include <stdarg.h>
+# include <wchar.h>
 
 # define ZERO (1 << 0)
 # define MINUS (1 << 1)
@@ -37,8 +38,8 @@ struct		s_flags
 	short	flags;
 	int		width;
 	int		precision;
-	int		_long;
-	int		_short;
+	int		longnb;
+	int		shortnb;
 	int		arg_pos;
 };
 
@@ -52,6 +53,9 @@ struct		s_handler
 int			ft_printf(const char *str, ...);
 void		ft_parse_printf(char *str, va_list *list, int *printed);
 void		ft_handle_colors(char **str, int *printed);
+t_flags		ft_new_flags(void);
+void		ft_parse_flags(char **str, va_list *list, int *printed,
+		t_flags flags);
 
 void		ft_printf_putchar(int c, int *printed);
 void		ft_printf_putnchar(int c, int *printed, size_t amount);
@@ -67,6 +71,8 @@ void		ft_printf_handle_int(va_list *list, int *printed, t_flags flags);
 void		ft_printf_handle_intlong(va_list *list, int *printed,
 		t_flags flags);
 void		ft_printf_handle_string(va_list *list, int *printed,
+		t_flags flags);
+void		ft_printf_handle_stringlong(va_list *list, int *printed,
 		t_flags flags);
 void		ft_printf_handle_char(va_list *list, int *printed,
 		t_flags flags);
@@ -91,4 +97,6 @@ void		ft_printf_handle_unsignedlong(va_list *list, int *printed,
 
 char		*ft_printf_itoa(ssize_t value, size_t base, t_flags flags);
 char		*ft_printf_uitoa(size_t value, size_t base, t_flags flags);
+void		ft_handle_wint_t(wint_t c, int *printed);
+size_t		ft_wintt_len(wint_t c);
 #endif

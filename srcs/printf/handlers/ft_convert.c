@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 17:53:14 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/17 18:33:41 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/07/20 14:06:36 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ char	*ft_printf_uitoa(size_t value, size_t base, t_flags flags)
 	size_t	len;
 
 	if (flags.flags & PRECISION && value == 0 && flags.precision == 0)
+	{
 		return (flags.flags & HASHTAG && base == 8 ? ft_strdup("0") :
-				ft_strdup(""));
+			ft_strdup(""));
+	}
 	prefix = ft_printf_getprefix(value, base, flags);
 	prefixlen = ft_strlen(prefix);
 	len = ft_max(flags.precision, ft_uintlen_base(value, base)) + prefixlen;
@@ -58,7 +60,7 @@ size_t	ft_calclen(ssize_t value, size_t base, t_flags flags, size_t hassign)
 		return (0);
 	len = ft_max(flags.precision, ft_intlen_base(value, base));
 	if (flags.width > 0 && flags.flags & ZERO && !(flags.flags & MINUS) &&
-			flags.precision <= 0)
+			(!(flags.flags & PRECISION) || flags.precision < 0))
 		len = ft_max(len, flags.width - hassign);
 	return (len);
 }
