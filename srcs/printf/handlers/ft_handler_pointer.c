@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 14:27:02 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/20 16:13:21 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/08/13 15:38:21 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	*ft_addrtoa(size_t address, t_flags flags)
 		address /= 16;
 	}
 	return (str);
-
 }
 
 void	ft_printf_handle_pointer(va_list *list, int *printed,

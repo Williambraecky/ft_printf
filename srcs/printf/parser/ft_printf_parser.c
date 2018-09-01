@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:16:33 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/20 14:01:35 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/08/13 14:35:23 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_handle_flag(char **str, va_list *list, t_flags t_flag, int *printed)
 			t_flag.flags |= LENGTH_Z;
 		(*str)++;
 	}
-	if (**str && (ft_strchr("0- +#$", **str) != NULL || ft_isdigit(**str)))
+	if (**str && (ft_strchr("0- +#$.", **str) != NULL || ft_isdigit(**str)))
 	{
 		(*str)--;
 		ft_parse_flags(str, list, printed, t_flag);

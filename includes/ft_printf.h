@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 16:40:40 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/20 15:04:53 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/08/14 11:02:03 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define PRECISION (1 << 10)
 
 # define UNDEFINED_WIDTH 0
+
+# define PRINTF_BUFFER 4096
 
 typedef struct s_flags	t_flags;
 struct		s_flags
@@ -61,6 +63,7 @@ void		ft_printf_putchar(int c, int *printed);
 void		ft_printf_putnchar(int c, int *printed, size_t amount);
 void		ft_printf_putnstr(const char *str, size_t len, int *printed);
 void		ft_printf_putstr(const char *str, int *printed);
+void		ft_printf_flush(void);
 
 void		ft_handle(char **str, va_list *list, t_flags flags,
 		int *printed);

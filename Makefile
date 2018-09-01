@@ -6,13 +6,13 @@
 #    By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/12 08:11:26 by wbraeckm          #+#    #+#              #
-#    Updated: 2018/07/17 17:32:51 by wbraeckm         ###   ########.fr        #
+#    Updated: 2018/08/13 15:34:18 by wbraeckm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 CC = gcc
-FLAGS = -O2 -Wall -Wextra -Werror
+FLAGS = -O3 -Wall -Wextra -Werror
 INCLUDES = includes/
 SRCSFOLDER = srcs
 OBJFOLDER = obj
