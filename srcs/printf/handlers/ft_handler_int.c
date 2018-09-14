@@ -6,35 +6,25 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 09:38:12 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/18 17:07:29 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/09/14 12:28:46 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printf_handle_intlong(va_list *list, int *printed, t_flags flags)
+void	ft_printf_handle_intlong(va_list *list, t_flags *flags)
 {
-	flags.longnb++;
-	ft_printf_handle_int(list, printed, flags);
+	flags->longnb++;
+	ft_printf_handle_int(list, flags);
 }
 
-void	ft_printf_handle_int(va_list *list, int *printed, t_flags flags)
+void	ft_printf_handle_int(va_list *list, t_flags *flags)
 {
-	ssize_t	n;
-	char	*itoa;
+	intmax_t	n;
+	char		*itoa;
 
-	n = (ssize_t)ft_arg_for(list, flags);
-	if (flags.longnb >= 2 || flags.flags & LENGTH_J || flags.flags & LENGTH_Z)
-		n = (ssize_t)n;
-	else if (flags.longnb == 1)
-		n = (ssize_t)((long int)n);
-	else if (flags.shortnb >= 2)
-		n = (ssize_t)((signed char)n);
-	else if (flags.shortnb == 1)
-		n = (ssize_t)((short int)n);
-	else
-		n = (ssize_t)(int)n;
+	n = ft_signed_int(list, flags);
 	itoa = ft_printf_itoa(n, 10, flags);
-	ft_printf_handle_string_intern(itoa, printed, flags);
+	ft_printf_handle_string_intern(itoa, flags);
 	free(itoa);
 }

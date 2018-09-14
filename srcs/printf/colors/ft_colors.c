@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 16:05:02 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/07/15 15:49:49 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/09/14 12:07:35 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*g_colors[][2] =
 	{NULL, NULL}
 };
 
-void	ft_handle_colors(char **str, int *printed)
+void	ft_handle_colors(char **str, t_flags *flags)
 {
 	char	*tmp;
 	size_t	i;
@@ -71,13 +71,13 @@ void	ft_handle_colors(char **str, int *printed)
 		{
 			if (*(tmp + ft_strlen(g_colors[i][0])) != '}')
 				break ;
-			ft_printf_putstr(g_colors[i][1], printed);
+			ft_printf_putstr(g_colors[i][1], flags);
 			tmp += ft_strlen(g_colors[i][0]) + 1;
 			*str = tmp;
 			return ;
 		}
 		i++;
 	}
-	ft_printf_putchar('{', printed);
+	ft_printf_putchar('{', flags);
 	(*str)++;
 }

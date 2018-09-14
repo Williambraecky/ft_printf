@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_lstlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/12 08:10:53 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/09/14 18:41:44 by wbraeckm         ###   ########.fr       */
+/*   Created: 2018/09/12 11:39:41 by wbraeckm          #+#    #+#             */
+/*   Updated: 2018/09/14 11:41:56 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <string.h>
-# include <stdarg.h>
-# include "get_next_line.h"
-# include "ft_printf.h"
-# include "libft_char.h"
-# include "libft_int.h"
-# include "libft_lst.h"
-# include "libft_math.h"
-# include "libft_mem.h"
-# include "libft_put.h"
-# include "libft_str.h"
+size_t	ft_lstlen(t_list *list)
+{
+	size_t len;
 
-void		*ft_arg_at(va_list list, size_t pos);
-
-#endif
+	len = 0;
+	while (list && ++len)
+		list = list->next;
+	return (len);
+}

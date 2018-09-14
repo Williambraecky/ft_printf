@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:16:33 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/08/13 14:35:23 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/09/14 12:40:22 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,55 +19,53 @@ void	ft_handle_paramed_width(char **str, va_list *list, t_flags *flags)
 	i = 0;
 	while (ft_isdigit(**str))
 		i = i * 10 + (*(*str)++ - '0');
-	if (**str == '*')
-		i = va_arg(list[0], int);
 	flags->width = i != 0 ? i : flags->width;
 	if (**str == '*' && (*str)++)
 	{
-		ft_handle_paramed_width(str, list, flags);
-		return ;
+		flags->width = ft_read_star_flag(str, list);
+		if (flags->width < 0)
+			flags->flags |= MINUS;
+		flags->width = ft_abs(flags->width);
 	}
 	while (**str == '.' && (*str)++)
 	{
 		i = 0;
 		while (ft_isdigit(**str))
 			i = i * 10 + (*(*str)++ - '0');
-		if (**str == '*')
-			i = va_arg(list[0], int);
-		flags->flags |= PRECISION;
-		flags->precision = i;
 		if (**str == '*' && (*str)++)
-			ft_handle_paramed_width(str, list, flags);
+			i = ft_read_star_flag(str, list);
+		if (i >= 0)
+			flags->flags |= PRECISION;
+		flags->precision = ft_max(i, 0);
 	}
 }
 
-void	ft_handle_flag(char **str, va_list *list, t_flags t_flag, int *printed)
+void	ft_handle_flag(char **str, va_list *list, t_flags *flags)
 {
-	ft_handle_paramed_width(str, list, &t_flag);
-	if (t_flag.width < 0)
+	ft_handle_paramed_width(str, list, flags);
+	if (flags->width < 0)
 	{
-		t_flag.width = ft_abs(t_flag.width);
-		t_flag.flags |= MINUS;
+		flags->width = ft_abs(flags->width);
+		flags->flags |= MINUS;
 	}
 	while (**str && ft_strchr("lhjz", **str) != NULL)
 	{
 		if (**str == 'l')
-			t_flag.longnb++;
+			flags->longnb++;
 		else if (**str == 'h')
-			t_flag.shortnb++;
+			flags->shortnb++;
 		else if (**str == 'j')
-			t_flag.flags |= LENGTH_J;
+			flags->flags |= LENGTH_J;
 		else if (**str == 'z')
-			t_flag.flags |= LENGTH_Z;
+			flags->flags |= LENGTH_Z;
 		(*str)++;
 	}
-	if (**str && (ft_strchr("0- +#$.", **str) != NULL || ft_isdigit(**str)))
+	if (**str && (ft_strchr("0- +#$.*", **str) != NULL || ft_isdigit(**str)))
 	{
-		(*str)--;
-		ft_parse_flags(str, list, printed, t_flag);
+		ft_parse_flags(str, list, flags);
 		return ;
 	}
-	ft_handle(str, list, t_flag, printed);
+	ft_handle(str, list, flags);
 }
 
 void	ft_handle_positional_arg(char **str, t_flags *flags)
@@ -87,30 +85,33 @@ void	ft_handle_positional_arg(char **str, t_flags *flags)
 	flags->arg_pos = arg_pos;
 }
 
-void	ft_parse_flags(char **str, va_list *list, int *printed, t_flags t_flag)
+void	ft_parse_flags(char **str, va_list *list, t_flags *flags)
 {
-	(*str)++;
+	if (**str == '%')
+		(*str)++;
 	while ((**str && ft_strchr("0- +#", **str) != NULL)
 			|| (ft_isdigit(**str) && ft_strchr(*str, '$') != NULL))
 	{
 		if (**str == '0')
-			t_flag.flags |= ZERO;
+			flags->flags |= ZERO;
 		else if (**str == '-')
-			t_flag.flags |= MINUS;
+			flags->flags |= MINUS;
 		else if (**str == ' ')
-			t_flag.flags |= BLANK;
+			flags->flags |= BLANK;
 		else if (**str == '+')
-			t_flag.flags |= PLUS;
+			flags->flags |= PLUS;
 		else if (**str == '#')
-			t_flag.flags |= HASHTAG;
+			flags->flags |= HASHTAG;
+		else if (**str == 'L')
+			flags->flags |= DOUBLE_L;
 		else if (ft_isdigit(**str))
-			ft_handle_positional_arg(str, &t_flag);
+			ft_handle_positional_arg(str, flags);
 		(*str)++;
 	}
-	ft_handle_flag(str, list, t_flag, printed);
+	ft_handle_flag(str, list, flags);
 }
 
-void	ft_parse_printf(char *str, va_list *list, int *printed)
+void	ft_parse_printf(char *str, va_list *list, t_flags *flags)
 {
 	char	*tmp;
 	char	*tmp2;
@@ -118,17 +119,17 @@ void	ft_parse_printf(char *str, va_list *list, int *printed)
 	while (*str)
 	{
 		if (*str == '{')
-			ft_handle_colors(&str, printed);
+			ft_handle_colors(&str, flags);
 		else if (*str == '%')
-			ft_parse_flags(&str, list, printed, ft_new_flags());
+			ft_parse_flags(&str, list, ft_reset_flags(flags));
 		tmp = ft_strchr(str, '%');
 		tmp2 = ft_strchr(str, '{');
 		if ((tmp == NULL && tmp2 != NULL) || (tmp && tmp2 && tmp2 < tmp))
 			tmp = tmp2;
 		if (tmp == NULL)
 			break ;
-		ft_printf_putnstr(str, tmp - str, printed);
+		ft_printf_putnstr(str, tmp - str, flags);
 		str = tmp;
 	}
-	ft_printf_putstr(str, printed);
+	ft_printf_putstr(str, flags);
 }

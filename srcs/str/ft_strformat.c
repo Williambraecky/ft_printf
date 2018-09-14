@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strformat.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/12 08:10:53 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/09/14 18:41:44 by wbraeckm         ###   ########.fr       */
+/*   Created: 2018/09/14 14:13:35 by wbraeckm          #+#    #+#             */
+/*   Updated: 2018/09/14 14:16:30 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <string.h>
-# include <stdarg.h>
-# include "get_next_line.h"
-# include "ft_printf.h"
-# include "libft_char.h"
-# include "libft_int.h"
-# include "libft_lst.h"
-# include "libft_math.h"
-# include "libft_mem.h"
-# include "libft_put.h"
-# include "libft_str.h"
+char	*ft_strformat(const char *format, ...)
+{
+	va_list	list[2];
+	t_flags	*flags;
+	char	*str;
 
-void		*ft_arg_at(va_list list, size_t pos);
-
-#endif
+	if (format == NULL || !(flags = ft_new_flags()))
+		return (NULL);
+	va_start(list[0], format);
+	va_copy(list[1], list[0]);
+	ft_parse_printf((char *)format, list, flags);
+	ft_printf_flush(flags);
+	va_end(list[0]);
+	va_end(list[1]);
+	str = flags->str;
+	free(flags);
+	return (str);
+}
